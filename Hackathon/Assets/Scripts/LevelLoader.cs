@@ -18,10 +18,10 @@ public class LevelLoader : MonoBehaviour
     void Awake()
     {
         //Sound = GetComponent<AudioSource>();
-        // Sound.clip = audio;
+       // Sound.clip = audio;
         //Sound.Play();
-        _loaderCanvas.SetActive(true);
         StartCoroutine(WaitForSound(Sound));
+
         if (!Instance)
         {
             Instance = this;
@@ -61,7 +61,6 @@ public class LevelLoader : MonoBehaviour
         // or yield return new WaitWhile(() => audiosource.isPlaying == true);
         if (gameObject != null)
             _loaderCanvas.SetActive(false);
-             _lobbyCanvas.SetActive(true);
     }
 
     private void Update()
