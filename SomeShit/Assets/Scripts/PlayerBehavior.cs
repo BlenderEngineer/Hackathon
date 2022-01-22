@@ -14,12 +14,16 @@ public class PlayerBehavior : MonoBehaviour
     [Tooltip("The Number of My Actual Tile")]
     public TextMeshProUGUI Score;
 
+    //The spees of movement of the player it can be changed through setting    
+    [Range(1, 10)] public static float Speed = 1;
+
     private bool DiceRolled = false;
     private int TileIndex = 0;
     private int DiceNumber;
 
     private float Default_Y;
     private bool Positioned = false;
+    
 
     void Start()
     {       
@@ -32,6 +36,12 @@ public class PlayerBehavior : MonoBehaviour
     {
         Score.text = $"Score : {TileIndex}";
 
+        if (Input.GetButtonDown("Action"))
+        {
+            RollTheDice_EventHandler();
+        }
+
+
         Transform Current = Tiles.transform.GetChild(TileIndex);
 
         //if the dice is rolled i can start moving
@@ -40,17 +50,17 @@ public class PlayerBehavior : MonoBehaviour
             //I start by going up 
             if(transform.position.y < Default_Y + 1.5f && Positioned == false)
             {
-                transform.position += Vector3.up * Time.deltaTime;
+                transform.position += Vector3.up * Time.deltaTime * Speed;
             }
             else
             {
-
+                WaitingText.text = $"You got : +{DiceNumber}";
 
                 //Then i move forward till i arrive at The Current Tile position
 
                 if (Mathf.Abs(transform.position.z) < Mathf.Abs(Current.position.z))
                 {
-                    transform.position += Vector3.forward * Time.deltaTime;
+                    transform.position += Vector3.forward * Time.deltaTime * Speed;
                 }
                 else
                 {
@@ -67,7 +77,7 @@ public class PlayerBehavior : MonoBehaviour
 
                 if(transform.position.y > Default_Y)
                 {
-                    transform.position += Vector3.down * Time.deltaTime;
+                    transform.position += Vector3.down * Time.deltaTime * Speed;
                 }
                 else
                 {
@@ -77,6 +87,7 @@ public class PlayerBehavior : MonoBehaviour
                     RollingButton.SetActive(true);
 
                     WaitingText.enabled = false;
+                    WaitingText.text = "The Dice is Rolling ...";
                 }
             }
 
