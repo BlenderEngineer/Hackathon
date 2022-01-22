@@ -903,6 +903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loaderCanvas: {fileID: 372491959}
   _progressBar: {fileID: 1658183879}
+  Sound: {fileID: 1800392511}
 --- !u!1001 &931911365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1408,7 +1409,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1547a9f7ba1853343b44e61a2d324dda, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
