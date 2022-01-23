@@ -1,22 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject Pause , canvas , Setting , PauseButton;
+    public GameObject Pause, canvas, Setting, PauseButton, TheEnd;
     public GameObject MainCamera, PauseCamera;
+    public TextMeshProUGUI Winner;
 
-    void Update()
-    {
-        Debug.Log("The Pause button was pressed :" + Input.GetButtonDown("Cancel"));
-
-        if (Input.GetButtonDown("Cancel"))
-        {
-            Pause_EventHandler();
-        }
-        
-    }
     public void Pause_EventHandler()
     {
         Time.timeScale = 0f;
@@ -33,7 +26,7 @@ public class PauseMenu : MonoBehaviour
         canvas.SetActive(true);
         MainCamera.SetActive(true);
         PauseCamera.SetActive(false);
-    } 
+    }
 
     public void Setting_EventHandler()
     {
@@ -50,10 +43,21 @@ public class PauseMenu : MonoBehaviour
     {
         Setting.SetActive(false);
         PauseButton.SetActive(true);
-    }    
+    }
 
     public void Quit_EventHandler()
     {
         Application.Quit();
     }
+
+    public void Restrat_EventHandler()
+    {
+        SceneManager.LoadScene("Main");
+        Winner.text = "";
+        TheEnd.SetActive(false);
+        PlayerBehavior.TileIndex_Player2 = 0;
+        PlayerBehavior.TileIndex_Player1 = 0;
+
+    }
+
 }
